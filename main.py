@@ -13,11 +13,12 @@ def main():
         self.menu.update()
 
     gui = GUI(self.capuchoMan)
-    capuchoMan = CapuchoMAN()
+    capuchoMan = CapuchoMAN(soundPlayer)
     level = RoomLoader()
 
-    playing = GameController(capuchoMan,gui,soundPlayer,level)
+    playing = GameController(capuchoMan,gui,level)
     playing.main()
+    #main()
 
 if __name__ == "__main__":
     main()
