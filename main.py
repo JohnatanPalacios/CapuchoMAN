@@ -1,14 +1,23 @@
 import pygame as pg
 import sys
 
+from Controllers.GameController import *
 from Constants import *
 
-pg.init()
-
 def main():
-    gameStates = {"Menu": True, "History": False, "Playing": False, "Pause": False}
-    started = GameController(gameStates)
-    started.main()
+    pg.init()
+    soundPlayer = Mezclador()
+
+    menu = Menu(self.soundPlayer)
+    while not self.menu.start:
+        self.menu.update()
+
+    gui = GUI(self.capuchoMan)
+    capuchoMan = CapuchoMAN()
+    level = RoomLoader()
+
+    playing = GameController(capuchoMan,gui,soundPlayer,level)
+    playing.main()
 
 if __name__ == "__main__":
     main()
