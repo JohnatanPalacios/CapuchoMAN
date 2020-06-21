@@ -34,28 +34,28 @@ class Jugador(pg.sprite.Sprite):
 
     def update(self):
         self.rect.x += self.velx
-        self.colision_x()
+        self.checkCollisionX()
         self.rect.y += self.vely
-        self.colision_y()
+        self.checkCollisionY()
         self.vely += self.gravedad
 
-        self.frame = animar(self.frame, 28, self.direccion)
+        self.frame = animate(self.frame, 28, self.direccion)
         self.image = self.animacion[self.aux_animacion][self.frame]
         self.mask = pg.mask.from_surface(self.image)
 
-    def colision_x(self):
-        lista_colision = pg.sprite.spritecollide(self,self.bloques,False,pg.sprite.collide_mask)
-        if lista_colision:
-            for b in lista_colision:
+    def checkCollisionX(self):
+        collisionList = pg.sprite.spritecollide(self,self.bloques,False,pg.sprite.collide_mask)
+        if collisionList:
+            for b in collisionList:
                 if ((self.rect.right >= b.rect.left) and (self.rect.right <= b.rect.right)):
                     self.rect.right = b.rect.left
                 elif ((self.rect.left <= b.rect.right) and (self.rect.left >= b.rect.left)):
                     self.rect.left = b.rect.right
 
-    def colision_y(self):
-        lista_colision = pg.sprite.spritecollide(self,self.bloques,False,pg.sprite.collide_mask)
-        if lista_colision:
-            for b in lista_colision:
+    def checkCollisionY(self):
+        collisionList = pg.sprite.spritecollide(self,self.bloques,False,pg.sprite.collide_mask)
+        if collisionList:
+            for b in collisionList:
                 if ((self.rect.bottom >= b.rect.top) and (self.rect.bottom <= b.rect.bottom)):
                     self.vely = 0
                     self.saltando = False

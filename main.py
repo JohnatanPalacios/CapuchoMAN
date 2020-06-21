@@ -6,7 +6,7 @@ from Constants import *
 
 def main():
     pg.init()
-    soundPlayer = Mezclador()
+    soundPlayer = Mixer()
 
     menu = Menu(self.soundPlayer)
     while not self.menu.start:
@@ -14,7 +14,7 @@ def main():
 
     gui = GUI(self.capuchoMan)
     capuchoMan = CapuchoMAN(soundPlayer)
-    level = RoomLoader()
+    #level = RoomLoader()
 
     playing = GameController(capuchoMan,gui,level)
     playing.main()
