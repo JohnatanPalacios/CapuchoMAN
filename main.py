@@ -14,8 +14,8 @@ def main():
     while not menu.start:
         menu.update()
 
-    gui = GUI(self.capuchoMan)
     capuchoMan = CapuchoMAN(soundPlayer)
+    gui = GUI(capuchoMan)
     #level = RoomLoader()
 
     playing = GameController(capuchoMan,gui,level)

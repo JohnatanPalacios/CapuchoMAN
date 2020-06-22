@@ -86,7 +86,7 @@ class Menu:
             interface.fill(NEGRO)
             if self.soundPlayer.getMudo():
                 interface.blit(self.bgControls,[0,0])
-                interface.blit(self.soundOFF,[506,559])
+                interface.blit(self.soundOFF.image,[506,559])
             else:
                 interface.blit(self.bgControls,[0,0])
             if self.accept.rect.collidepoint(self.posMouse):
@@ -97,7 +97,7 @@ class Menu:
                     self.menuStates["initial"] = True
                 else:
                     interface.blit(self.accept.image,[992,602])
-            elif self.sound.rect.collidepoint(self.posMouse):
+            elif self.soundON.rect.collidepoint(self.posMouse):
                 if self.soundPlayer.getMudo():
                     if self.click[0] == 1:
                         self.soundPlayer.click()
@@ -128,7 +128,6 @@ class Menu:
         self.iconos.add(self.credits)
         self.iconos.add(self.exit)
         self.iconos.add(self.accept)
-
 
 
     def _exit(self):
