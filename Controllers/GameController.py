@@ -22,4 +22,13 @@ class GameController:
             self.capuchoMan.update()
             self.gui.update()
             self.checkGameOver()
+            self.checkSound()
+
             self.clock.tick(FPS)
+            pg.display.flip()
+
+    def checkSound(self):
+        if not self.gameOver:
+            self.soundPlayer.set_locationGame("playing",True)
+        else:
+            self.soundPlayer.set_locationGame("playing",False)

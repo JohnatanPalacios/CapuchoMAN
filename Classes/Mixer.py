@@ -5,6 +5,7 @@ pg.mixer.init()
 
 class Mixer:
     def __init__(self):
+        self.locationGame = {"menu": False, "history": False, "playing": False}
         self.playList = [pg.mixer.music.load("./Sounds/rock1.ogg"),
                         pg.mixer.music.load("./Sounds/rock2.ogg"),
                         pg.mixer.music.load("./Sounds/rock3.ogg")]
@@ -17,47 +18,54 @@ class Mixer:
         self.flagHistoria = True
         self.conPlayList = 0
 
-    def update(self,estados):
-        self.menu(estados)
-        self.historia(estados)
-        self.musica(estados)
+    def update(self):
+        self.menu()
+        self.history()
+        self.playing()
 
-    def menu(self,estados):
+    def set_locationGame(self,state,value):
+        if state in self.locationGame:
+            self.locationGame[state] = value
+
+
+    def menu(self):
         if self.flagMudo:
             self.musicMenu.stop()
             self.flagMenu = True
-        elif estados["inicio"] and not self.flagMudo and self.flagMenu:
+        elif self.locationGame["menu"] and not self.flagMudo and self.flagMenu:
             self.musicMenu.play(-1)
             self.flagMenu = False
-        elif not estados["inicio"]:# and not self.flagMenu:
+        elif not self.locationGame["menu"]:# and not self.flagMenu:
             self.musicMenu.stop()
             self.flagMenu = True
 
-    def historia(self,estados):
+    def history(self):
         if self.flagMudo:
             self.musicHistoria.stop()
             self.flagHistoria = True
-        elif estados["historia"] and not self.flagMudo and self.flagHistoria:
+        elif self.locationGame["history"] and not self.flagMudo and self.flagHistoria:
             self.musicHistoria.play(-1)
             self.flagHistoria = False
-        elif not estados["historia"]:# and not self.flagMenu:
+        elif not self.locationGame["history"]:# and not self.flagMenu:
             self.musicHistoria.stop()
             self.flagHistoria = True
+
+
+    def playing(self):
+        if self.locationGame["playing"]:
+            if not self.flagMudo:
+                if pg.mixer.music.get_busy() == 0: #1 es sonando y 0 es sin sonido
+                    self.playList[self.nextSong()]
+                    pg.mixer.music.play()
+        else:
+            pg.mixer.music.stop()
+
 
     def click(self):
         self.sonidoClick.play()
 
     def grunt(self):
         self.grunt.play()
-
-    def musica(self,estados):
-        if estados["nivel1"] or estados["nivel2"]:
-            if not self.flagMudo:
-                if pg.mixer.music.get_busy() == 0: #1 es sonando y 0 es sin sonido
-                    self.playList[self.nextSong()]
-                    pg.mixer.music.play()
-        elif estados["inicio"]:
-            pg.mixer.music.stop()
 
     def nextSong(self):
         if self.conPlayList < len(self.playList):

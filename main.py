@@ -3,14 +3,16 @@ import sys
 
 from Controllers.GameController import *
 from Constants import *
+from Classes.Mixer import *
+from Classes.Menu import *
 
 def main():
     pg.init()
     soundPlayer = Mixer()
 
-    menu = Menu(self.soundPlayer)
-    while not self.menu.start:
-        self.menu.update()
+    menu = Menu(soundPlayer)
+    while not menu.start:
+        menu.update()
 
     gui = GUI(self.capuchoMan)
     capuchoMan = CapuchoMAN(soundPlayer)
