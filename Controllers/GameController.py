@@ -4,6 +4,10 @@ import sys
 from Classes.Camera import *
 from Constants import *
 
+#######################################
+# OJO SI NO SE HACEN LAS COLISIONES CON ESTO NO FUNCIONA LA MASCARA
+# collide_mask (sprite1, sprite2) -> (int, int)
+#########################################################
 
 class GameController:
     # aqui va el metodo o variable estatica gameStates
@@ -14,6 +18,12 @@ class GameController:
         self.soundPlayer = soundPlayer
         self.level = level
         self.gameOver = False
+
+        self.player = pg.sprite.Group()
+        self.enemigos = pg.sprite.Group()
+        self.bloques = pg.sprite.Group()
+        self.bonus = pg.sprite.Group()
+        self.molotovs = pg.sprite.Group()
 
 
     def main(self):
@@ -26,6 +36,10 @@ class GameController:
 
             self.clock.tick(FPS)
             pg.display.flip()
+
+    def drawGroups(self):
+        for group in groups:
+            group.draw(interface)
 
     def checkSound(self):
         if not self.gameOver:

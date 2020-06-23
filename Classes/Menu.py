@@ -78,8 +78,10 @@ class Menu:
                 interface.blit(self.accept.image,[992,602])
                 if self.click[0] == 1:
                     self.soundPlayer.click()
+                    interface.blit(self.accept.image,[992,602])
                     self.menuStates["credits"] = False
                     self.menuStates["initial"] = True
+            self.click = (0,0,0)
 
     def _options(self):
         if self.menuStates["options"]:
@@ -110,6 +112,7 @@ class Menu:
                         self.soundPlayer.mudo()
                     else:
                         interface.blit(self.soundOFF.image,[506,559])
+            self.click = (0,0,0)
 
 
     def checkInput(self):

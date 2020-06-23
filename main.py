@@ -5,6 +5,7 @@ from Controllers.GameController import *
 from Constants import *
 from Classes.Mixer import *
 from Classes.Menu import *
+from Classes.CapuchoMAN import *
 
 def main():
     pg.init()
@@ -14,7 +15,7 @@ def main():
     while not menu.start:
         menu.update()
 
-    capuchoMan = CapuchoMAN(soundPlayer)
+    capuchoMan = CapuchoMAN()
     gui = GUI(capuchoMan)
     #level = RoomLoader()
 

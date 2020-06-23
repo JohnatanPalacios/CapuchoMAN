@@ -3,40 +3,37 @@ import sys
 
 from Classes.Maths import *
 from Classes.Inputs import *
-from Classes.tools import *
+from Classes.Animation import *
 
 
 
-class Jugador(pg.sprite.Sprite):
+class CapuchoMAN(pg.sprite.Sprite):
     def __init__(self):
-        self.posInicial = None
+        self.posInicial = [128,128]
         self.input = Inputs(self)
         self.vidas = 3
         self.salud = 1000
         self.puntos = 0
+        self.states = {"jump": True, "pause": False, "direction": 1}
 
-        self.animacion = self.crear_animacion()
-        self.frame = 0
-        self.direccion = 0
-        self.aux_animacion = 0
-        self.image = self.animacion[self.aux_animacion][self.frame]
-        self.mask = pg.mask.from_surface(self.image)
-        self.rect = self.image.get_rect()
-        self.rect.x = pos[0]
-        self.rect.y = pos[1]
+        self.mask = None
+        self.animation = Animation(self,"./Graphics/saltando (64x47).png",
+                                        "./Graphics/CapMAN.png",[41,60], 6, 5, 28)
+        self.animation.main()
+        self.rect.x = self.posInicial[0]
+        self.rect.y = self.posInicial[1]
 
         self.vel = Vec2D()
-        self.states = {"jump": False, "pause": False}
         self.walls = None
         self.molotovs = None
         self.time = None
         self.gravedad = 3.5
 
     def update(self):
+        self.input.checkInputs()
         self.move()
         self.gravity()
-        self.animation()
-        self.input.checkInputs()
+        self.animation.update()
 
     def move(self):
         self.rect.x += self.vel.x
@@ -84,20 +81,6 @@ class Jugador(pg.sprite.Sprite):
     def checkGameOver(self):
         if self.vidas == 0:
             self.gameOver = True
-
-    def crear_animacion(self):
-        animacion = []
-        animacion.append(crear_sprite("./jugador/sprites/derecha.png", [41,60], 6, 5))
-        animacion.append(crear_sprite("./jugador/sprites/izquierda.png", [41,60], 6, 5))
-        return animacion
-
-        '''
-         pygame.transform.flip()
-         flip vertically and horizontally
-         flip(Surface, xbool, ybool) -> Surface
-
-         This can flip a Surface either vertically, horizontally, or both. Flipping a Surface is non-destructive and returns a new Surface with the same dimensions.
-        '''
 
     def restarVida(self,cantidad):
         jugador.vida -= cantidad
