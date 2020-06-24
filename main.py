@@ -6,6 +6,7 @@ from Constants import *
 from Classes.Mixer import *
 from Classes.Menu import *
 from Classes.CapuchoMAN import *
+from Classes.GUI import *
 
 def main():
     pg.init()
@@ -17,7 +18,7 @@ def main():
 
     capuchoMan = CapuchoMAN()
     gui = GUI(capuchoMan)
-    #level = RoomLoader()
+    level = RoomLoader()
 
     playing = GameController(capuchoMan,gui,level)
     playing.main()
