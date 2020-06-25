@@ -9,21 +9,26 @@ from Constants import *
 # collide_mask (sprite1, sprite2) -> (int, int)
 #########################################################
 
+
 class GameController:
     # aqui va el metodo o variable estatica gameStates
-    def __init__(self,capuchoMan,gui,level):
+    def __init__(self,capuchoMan,gui):
         self.clock = pg.time.Clock()
         self.capuchoMan = capuchoMan
         self.gui = gui
         self.soundPlayer = soundPlayer
-        self.level = level
         self.gameOver = False
 
-        self.player = pg.sprite.Group()
-        self.enemigos = pg.sprite.Group()
-        self.bloques = pg.sprite.Group()
-        self.bonus = pg.sprite.Group()
-        self.molotovs = pg.sprite.Group()
+        self.groups = {"player": pg.sprite.Group(),
+                        "molotovs": pg.sprite.Group(),
+                        "door": pg.sprite.Group(),
+                        "nails": pg.sprite.Group(),
+                        "blocks": pg.sprite.Group(),
+                        "enemys": pg.sprite.Group(),
+                        "coins": pg.sprite.Group()}
+
+        self.level = RoomLoader(self.groups)
+
 
 
     def main(self):
@@ -39,7 +44,7 @@ class GameController:
 
     def drawGroups(self):
         for group in groups:
-            group.draw(interface)
+            group.draw(INTERFACE)
 
     def checkSound(self):
         if not self.gameOver:

@@ -20,7 +20,7 @@ class GUI():
         self.time = None
 
     def update(self):
-        interface.blit(self.barra,[0,0])
+        INTERFACE.blit(self.barra,[0,0])
         self.drawPuntos()
         self.drawVida()
         self.drawTime()
@@ -32,43 +32,43 @@ class GUI():
         unidad = decena % 10
 
         if int(miles) != 0:
-            interface.blit(self.numeros[int(miles)],[183,5])
+            INTERFACE.blit(self.numeros[int(miles)],[183,5])
         if int(centena) != 0 or miles > 0:
-            interface.blit(self.numeros[int(centena)],[200,5])
+            INTERFACE.blit(self.numeros[int(centena)],[200,5])
         if int(decena) != 0 or centena > 0 or miles > 0:
-            interface.blit(self.numeros[int(decena)],[217,5])
+            INTERFACE.blit(self.numeros[int(decena)],[217,5])
 
-        interface.blit(self.numeros[int(unidad)],[234,5])
+        INTERFACE.blit(self.numeros[int(unidad)],[234,5])
 
     def drawVida(self):
         if self.CapuchoMAN.salud > 500 and self.CapuchoMAN.vidas == 3:
-            interface.blit(self.vida[0],self.posVidas[0])
-            interface.blit(self.vida[0],self.posVidas[1])
-            interface.blit(self.vida[0],self.posVidas[2])
+            INTERFACE.blit(self.vida[0],self.posVidas[0])
+            INTERFACE.blit(self.vida[0],self.posVidas[1])
+            INTERFACE.blit(self.vida[0],self.posVidas[2])
         if self.CapuchoMAN.salud <= 500 and self.CapuchoMAN.vidas == 3:
-            interface.blit(self.vida[0],self.posVidas[0])
-            interface.blit(self.vida[0],self.posVidas[1])
-            interface.blit(self.vida[1],self.posVidas[2])
+            INTERFACE.blit(self.vida[0],self.posVidas[0])
+            INTERFACE.blit(self.vida[0],self.posVidas[1])
+            INTERFACE.blit(self.vida[1],self.posVidas[2])
         if self.CapuchoMAN.salud > 500 and self.CapuchoMAN.vidas == 2:
-            interface.blit(self.vida[0],self.posVidas[0])
-            interface.blit(self.vida[0],self.posVidas[1])
-            interface.blit(self.vida[2],self.posVidas[2])
+            INTERFACE.blit(self.vida[0],self.posVidas[0])
+            INTERFACE.blit(self.vida[0],self.posVidas[1])
+            INTERFACE.blit(self.vida[2],self.posVidas[2])
         if self.CapuchoMAN.salud <= 500 and self.CapuchoMAN.vidas == 2:
-            interface.blit(self.vida[0],self.posVidas[0])
-            interface.blit(self.vida[1],self.posVidas[1])
-            interface.blit(self.vida[2],self.posVidas[2])
+            INTERFACE.blit(self.vida[0],self.posVidas[0])
+            INTERFACE.blit(self.vida[1],self.posVidas[1])
+            INTERFACE.blit(self.vida[2],self.posVidas[2])
         if self.CapuchoMAN.salud > 500 and self.CapuchoMAN.vidas == 1:
-            interface.blit(self.vida[0],self.posVidas[0])
-            interface.blit(self.vida[2],self.posVidas[1])
-            interface.blit(self.vida[2],self.posVidas[2])
+            INTERFACE.blit(self.vida[0],self.posVidas[0])
+            INTERFACE.blit(self.vida[2],self.posVidas[1])
+            INTERFACE.blit(self.vida[2],self.posVidas[2])
         if self.CapuchoMAN.salud <= 500 and self.CapuchoMAN.vidas == 1:
-            interface.blit(self.vida[1],self.posVidas[0])
-            interface.blit(self.vida[2],self.posVidas[1])
-            interface.blit(self.vida[2],self.posVidas[2])
+            INTERFACE.blit(self.vida[1],self.posVidas[0])
+            INTERFACE.blit(self.vida[2],self.posVidas[1])
+            INTERFACE.blit(self.vida[2],self.posVidas[2])
         if self.CapuchoMAN.vidas == 0:
-            interface.blit(self.vida[2],self.posVidas[0])
-            interface.blit(self.vida[2],self.posVidas[1])
-            interface.blit(self.vida[2],self.posVidas[2])
+            INTERFACE.blit(self.vida[2],self.posVidas[0])
+            INTERFACE.blit(self.vida[2],self.posVidas[1])
+            INTERFACE.blit(self.vida[2],self.posVidas[2])
 
     def drawTime(self):
         self.seg = int(self.conFPS // FPS)
@@ -84,7 +84,7 @@ class GUI():
         else:
             self.time = str(self.min) + ':' + '0' + str(59 - self.seg)
 
-        interface.blit(self.fuente.render(self.time,True,NEGRO),self.posTime)
+        INTERFACE.blit(self.fuente.render(self.time,True,NEGRO),self.posTime)
         self.CapuchoMAN.setTime(self.time)
 
     def checkEstado(self,gameOver):

@@ -45,73 +45,73 @@ class Menu:
 
     def initial(self):
         if self.menuStates["initial"]:
-            interface.fill(NEGRO)
-            interface.blit(self.bgInitial,[0,0])
+            INTERFACE.fill(NEGRO)
+            INTERFACE.blit(self.bgInitial,[0,0])
             if self.play.rect.collidepoint(self.posMouse):
-                interface.blit(self.play.image,[917,297])
+                INTERFACE.blit(self.play.image,[917,297])
                 if self.click[0] == 1:
                     self.soundPlayer.click()
                     self.start = True
             elif self.options.rect.collidepoint(self.posMouse):
-                interface.blit(self.options.image,[917,389])
+                INTERFACE.blit(self.options.image,[917,389])
                 if self.click[0] == 1:
                     self.soundPlayer.click()
                     self.menuStates["initial"] = False
                     self.menuStates["options"] = True
             elif self.credits.rect.collidepoint(self.posMouse):
-                interface.blit(self.credits.image,[917,482])
+                INTERFACE.blit(self.credits.image,[917,482])
                 if self.click[0] == 1:
                     self.soundPlayer.click()
                     self.menuStates["initial"] = False
                     self.menuStates["credits"] = True
             elif self.exit.rect.collidepoint(self.posMouse):
-                interface.blit(self.exit.image,[917,575])
+                INTERFACE.blit(self.exit.image,[917,575])
                 if self.click[0] == 1:
                     self.soundPlayer.click()
                     self._exit()
 
     def _credits(self):
         if self.menuStates["credits"]:
-            interface.fill(NEGRO)
-            interface.blit(self.bgCredits,[0,0])
+            INTERFACE.fill(NEGRO)
+            INTERFACE.blit(self.bgCredits,[0,0])
             if self.accept.rect.collidepoint(self.posMouse):
-                interface.blit(self.accept.image,[992,602])
+                INTERFACE.blit(self.accept.image,[992,602])
                 if self.click[0] == 1:
                     self.soundPlayer.click()
-                    interface.blit(self.accept.image,[992,602])
+                    INTERFACE.blit(self.accept.image,[992,602])
                     self.menuStates["credits"] = False
                     self.menuStates["initial"] = True
             self.click = (0,0,0)
 
     def _options(self):
         if self.menuStates["options"]:
-            interface.fill(NEGRO)
+            INTERFACE.fill(NEGRO)
             if self.soundPlayer.getMudo():
-                interface.blit(self.bgControls,[0,0])
-                interface.blit(self.soundOFF.image,[506,559])
+                INTERFACE.blit(self.bgControls,[0,0])
+                INTERFACE.blit(self.soundOFF.image,[506,559])
             else:
-                interface.blit(self.bgControls,[0,0])
+                INTERFACE.blit(self.bgControls,[0,0])
             if self.accept.rect.collidepoint(self.posMouse):
                 if self.click[0] == 1:
                     self.soundPlayer.click()
-                    interface.blit(self.accept.image,[992,602])
+                    INTERFACE.blit(self.accept.image,[992,602])
                     self.menuStates["options"] = False
                     self.menuStates["initial"] = True
                 else:
-                    interface.blit(self.accept.image,[992,602])
+                    INTERFACE.blit(self.accept.image,[992,602])
             elif self.soundON.rect.collidepoint(self.posMouse):
                 if self.soundPlayer.getMudo():
                     if self.click[0] == 1:
                         self.soundPlayer.click()
                         self.soundPlayer.mudo()
                     else:
-                        interface.blit(self.soundON.image,[506,559])
+                        INTERFACE.blit(self.soundON.image,[506,559])
                 else:
                     if self.click[0] == 1:
                         self.soundPlayer.click()
                         self.soundPlayer.mudo()
                     else:
-                        interface.blit(self.soundOFF.image,[506,559])
+                        INTERFACE.blit(self.soundOFF.image,[506,559])
             self.click = (0,0,0)
 
 

@@ -18,9 +18,8 @@ def main():
 
     capuchoMan = CapuchoMAN()
     gui = GUI(capuchoMan)
-    level = RoomLoader()
 
-    playing = GameController(capuchoMan,gui,level)
+    playing = GameController(capuchoMan,gui)
     playing.main()
     #main()
 
