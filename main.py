@@ -19,7 +19,7 @@ def main():
     capuchoMan = CapuchoMAN()
     gui = GUI(capuchoMan)
 
-    playing = GameController(capuchoMan,gui)
+    playing = GameController(capuchoMan,gui,soundPlayer)
     playing.main()
     #main()
 

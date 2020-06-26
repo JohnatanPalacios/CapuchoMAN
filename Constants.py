@@ -8,7 +8,7 @@ WINDOWSIZE = [WIDTH,HEIGTH]
 
 INTERFACE = pg.display.set_mode(WINDOWSIZE)
 ICON = pg.image.load('./Graphics/CapuchoMAN.png')
-pg.display.set_icon(icon)
+pg.display.set_icon(ICON)
 pg.display.set_caption("CapuchoMAN")
 
 # colores
