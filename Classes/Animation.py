@@ -13,7 +13,6 @@ class Animation:
         self.frame = 0
         self.numberFrames = len(self.animations[0])
 
-    def main(self):
         self.object.image = self.animations[0][0]
         self.object.mask = pg.mask.from_surface(self.object.image)
         self.object.rect = self.object.image.get_rect()
@@ -67,8 +66,8 @@ class Animation:
                             image = pg.transform.flip(image, True, False)
                             left.append(image)
                         i += 1
-        animation.append(left)
         animation.append(right)
+        animation.append(left)
         return animation
 
     def animate(self):

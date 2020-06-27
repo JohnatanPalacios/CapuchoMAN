@@ -16,10 +16,7 @@ def main():
     while not menu.start:
         menu.update()
 
-    capuchoMan = CapuchoMAN()
-    gui = GUI(capuchoMan)
-
-    playing = GameController(capuchoMan,gui,soundPlayer)
+    playing = GameController(soundPlayer)
     playing.main()
     #main()
 

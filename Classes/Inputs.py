@@ -1,6 +1,6 @@
 import pygame as pg
 from pygame.locals import *
-#from pygame.keys import *
+#from pygame.key import *
 import sys
 
 
@@ -20,29 +20,29 @@ class Inputs:
             self.controls(keys)
 
     def controls(self,keys):
-        if keys[a]:
+        if keys[K_a]:
             self.capuchoMan.states["direction"] = -1
             self.capuchoMan.vel.x = -7
-        elif keys[d]:
+        elif keys[K_d]:
             self.capuchoMan.states["direction"] = 1
             self.capuchoMan.vel.x = 7
         else:
             self.capuchoMan.states["direction"] = 0
             self.capuchoMan.vel.x = 0
 
-        if keys[LSHIFT]:
+        if keys[K_LSHIFT]:
             self.capuchoMan.vel.x *= 2
 
-        if keys[SPACE]:
+        if keys[K_SPACE]:
             self.jumping()
 
-        if keys[j]:
+        if keys[K_j]:
             #self.disparar()
             pass
 
     def jumping(self):
-        if not self.capuchoMan.states["saltando"]:
-            self.capuchoMan.states["saltando"] = True
+        if not self.capuchoMan.states["jump"]:
+            self.capuchoMan.states["jump"] = True
             self.capuchoMan.vel.y = -36
 
     def _exit(self):

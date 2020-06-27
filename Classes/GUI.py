@@ -86,11 +86,3 @@ class GUI():
 
         INTERFACE.blit(self.fuente.render(self.time,True,NEGRO),self.posTime)
         self.CapuchoMAN.setTime(self.time)
-
-    def checkEstado(self,gameOver):
-        if gameOver:
-            self.conFPS = 0
-            self.seg = 0
-            self.min = 1
-            self.time = None
-            self.CapuchoMAN.setTime(self.time)

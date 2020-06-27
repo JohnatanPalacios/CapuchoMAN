@@ -9,7 +9,7 @@ from Classes.Nails import *
 ###   ASEPRITE (es de pago pero se puede pirata)
 
 class RoomLoader:
-    def __init__(self,capuchoMan,door,nails,platforms,walls,enemys,coins):
+    def __init__(self,capuchoMan,door,nails,walls,enemys,coins):
         self.mapInfo = None
         self.countUP = 0
         self.alarm = True
@@ -18,7 +18,6 @@ class RoomLoader:
         self.capuchoMan = capuchoMan
         self.door = door
         self.nails = nails
-        self.platforms = platforms
         self.walls = walls
         self.enemys = enemys
         self.coins = coins
@@ -67,6 +66,7 @@ class RoomLoader:
         Information.close()
 
         #Extraccion Objetos Json
+        _capuchoMAN = self.mapInfo['layers'][7]['objects']
         _door = self.mapInfo['layers'][6]['objects']
         _nails = self.mapInfo['layers'][5]['objects']
         _platforms = self.mapInfo['layers'][4]['objects']
@@ -75,7 +75,6 @@ class RoomLoader:
         _coins = self.mapInfo['layers'][1]['objects']
 
         #Creacion de las paredes
-        print(_walls)
         for i in range(len(_walls)):
             temp = Walls((_walls[i]['x']),(_walls[i]['y']),_walls[i]['width'],_walls[i]['height'])
             self.walls.add(temp)
@@ -92,5 +91,10 @@ class RoomLoader:
             temp = Nails((_nails[i]['x']),(_nails[i]['y']),_nails[i]['width'],_nails[i]['height'])
             self.nails.add(temp)
 
+        ############## ZONA DE ACTUALIZACION DEL JUGADOR CON RELACION AL MAPA ACTUAL
+        ############## PREFERIBLEMENTE CREAR METODO EN EL JUGADOR PARA HACER ESTO
+        #### posicion inicial del jugador para este mapa
+        #self.capuchoMan.rect.x = int(_capuchoMAN[0]['x'])
+        #self.capuchoMan.rect.y = int(_capuchoMAN[0]['y'])
         #carga en capuchoMan las paredes para verificar por donde caminar
         self.capuchoMan.walls = self.walls
