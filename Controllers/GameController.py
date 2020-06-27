@@ -4,6 +4,7 @@ import sys
 from Classes.Camera import *
 from Constants import *
 from Controllers.RoomLoader import *
+from Controllers.CollisionController import *
 
 from Classes.CapuchoMAN import *
 from Classes.GUI import *
@@ -21,35 +22,33 @@ class GameController:
         self.soundPlayer = soundPlayer
         self.gameOver = False
 
-        self.player = pg.sprite.Group()
-        self.player.add(self.capuchoMan)
-        self.molotovs =  pg.sprite.Group()
-
         self.door =  pg.sprite.Group()
         self.nails =  pg.sprite.Group()
         self.walls =  pg.sprite.Group()
         self.enemys =  pg.sprite.Group()
         self.coins =  pg.sprite.Group()
 
+        self.molotovs =  pg.sprite.Group()
+        self.capuchoMan.molotovs = self.molotovs
+
         self.level = RoomLoader(self.capuchoMan,self.door,self.nails,self.walls,self.enemys,self.coins)
-        #self.collisions = CollisionController()
+        self.collisions = CollisionController(self.capuchoMan,self.door,self.nails,self.enemys,self.coins,self.molotovs)
 
     def main(self):
         while not self.gameOver:
             self.level.update()
             self.capuchoMan.update()
-            #self.collisions()
+            self.collisions.update()
             #self.checkGameOver()
             self.checkSound()
-
-            self.clock.tick(FPS)
             self.drawGame()
             self.gui.update()
+            self.clock.tick(FPS)
 
     def drawGame(self):
         INTERFACE.fill(NEGRO)
         INTERFACE.blit(self.level.background,[0,0])
-        INTERFACE.blit(self.capuchoMan.image,[self.capuchoMan.rect.x,self.capuchoMan.rect.y])
+        INTERFACE.blit(self.capuchoMan.image,self.capuchoMan.getPos())
         #self.enemy.draw(INTERFACE)
         #self.coins.draw(INTERFACE)
         pg.display.flip()

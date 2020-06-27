@@ -3,7 +3,7 @@ import sys
 
 from Entities.BaseBlock import *
 
-class Walls(BaseBlock):
+class Nail(BaseBlock):
     def __init__(self,x,y,width,height):
         super().__init__(x,y,width,height)
-        self.damage = 0
+        self.damage = 150

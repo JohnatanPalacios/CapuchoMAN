@@ -7,10 +7,10 @@ from Classes.tools import *
 
 class GUI():
     def __init__(self,CapuchoMAN):
-        self.barra = pg.image.load("./Graphics/gui/bar.png").convert_alpha()
+        self.textBar = pg.image.load("./Graphics/gui/bar.png").convert_alpha()
         self.numeros = createSprite("./Graphics/gui/numeros.png",[14,19],10)
-        self.vida = createSprite("./Graphics/gui/vida.png",[33,28],3)
-        self.posVidas = [[644,2],[681,2],[718,2]]
+        self.live = createSprite("./Graphics/gui/vida.png",[33,28],3)
+        self.posLives = [[644,2],[681,2],[718,2]]
         self.CapuchoMAN = CapuchoMAN
         self.conFPS = 0
         self.seg = 0
@@ -20,15 +20,16 @@ class GUI():
         self.time = None
 
     def update(self):
-        INTERFACE.blit(self.barra,[0,0])
-        self.drawPuntos()
-        self.drawVida()
+        INTERFACE.blit(self.textBar,[0,0])
+        self.drawPoints()
+        self.drawHealthLive()
         self.drawTime()
+        pg.display.flip()
 
-    def drawPuntos(self):
-        miles = self.CapuchoMAN.puntos/1000
-        centena = (self.CapuchoMAN.puntos - ((int(self.CapuchoMAN.puntos/1000))*1000))/100
-        decena = (self.CapuchoMAN.puntos % 100)/10
+    def drawPoints(self):
+        miles = self.CapuchoMAN.points/1000
+        centena = (self.CapuchoMAN.points - ((int(self.CapuchoMAN.points/1000))*1000))/100
+        decena = (self.CapuchoMAN.points % 100)/10
         unidad = decena % 10
 
         if int(miles) != 0:
@@ -40,35 +41,35 @@ class GUI():
 
         INTERFACE.blit(self.numeros[int(unidad)],[234,5])
 
-    def drawVida(self):
-        if self.CapuchoMAN.salud > 500 and self.CapuchoMAN.vidas == 3:
-            INTERFACE.blit(self.vida[0],self.posVidas[0])
-            INTERFACE.blit(self.vida[0],self.posVidas[1])
-            INTERFACE.blit(self.vida[0],self.posVidas[2])
-        if self.CapuchoMAN.salud <= 500 and self.CapuchoMAN.vidas == 3:
-            INTERFACE.blit(self.vida[0],self.posVidas[0])
-            INTERFACE.blit(self.vida[0],self.posVidas[1])
-            INTERFACE.blit(self.vida[1],self.posVidas[2])
-        if self.CapuchoMAN.salud > 500 and self.CapuchoMAN.vidas == 2:
-            INTERFACE.blit(self.vida[0],self.posVidas[0])
-            INTERFACE.blit(self.vida[0],self.posVidas[1])
-            INTERFACE.blit(self.vida[2],self.posVidas[2])
-        if self.CapuchoMAN.salud <= 500 and self.CapuchoMAN.vidas == 2:
-            INTERFACE.blit(self.vida[0],self.posVidas[0])
-            INTERFACE.blit(self.vida[1],self.posVidas[1])
-            INTERFACE.blit(self.vida[2],self.posVidas[2])
-        if self.CapuchoMAN.salud > 500 and self.CapuchoMAN.vidas == 1:
-            INTERFACE.blit(self.vida[0],self.posVidas[0])
-            INTERFACE.blit(self.vida[2],self.posVidas[1])
-            INTERFACE.blit(self.vida[2],self.posVidas[2])
-        if self.CapuchoMAN.salud <= 500 and self.CapuchoMAN.vidas == 1:
-            INTERFACE.blit(self.vida[1],self.posVidas[0])
-            INTERFACE.blit(self.vida[2],self.posVidas[1])
-            INTERFACE.blit(self.vida[2],self.posVidas[2])
-        if self.CapuchoMAN.vidas == 0:
-            INTERFACE.blit(self.vida[2],self.posVidas[0])
-            INTERFACE.blit(self.vida[2],self.posVidas[1])
-            INTERFACE.blit(self.vida[2],self.posVidas[2])
+    def drawHealthLive(self):
+        if self.CapuchoMAN.health > 500 and self.CapuchoMAN.lives == 3:
+            INTERFACE.blit(self.live[0],self.posLives[0])
+            INTERFACE.blit(self.live[0],self.posLives[1])
+            INTERFACE.blit(self.live[0],self.posLives[2])
+        if self.CapuchoMAN.health <= 500 and self.CapuchoMAN.lives == 3:
+            INTERFACE.blit(self.live[0],self.posLives[0])
+            INTERFACE.blit(self.live[0],self.posLives[1])
+            INTERFACE.blit(self.live[1],self.posLives[2])
+        if self.CapuchoMAN.health > 500 and self.CapuchoMAN.lives == 2:
+            INTERFACE.blit(self.live[0],self.posLives[0])
+            INTERFACE.blit(self.live[0],self.posLives[1])
+            INTERFACE.blit(self.live[2],self.posLives[2])
+        if self.CapuchoMAN.health <= 500 and self.CapuchoMAN.lives == 2:
+            INTERFACE.blit(self.live[0],self.posLives[0])
+            INTERFACE.blit(self.live[1],self.posLives[1])
+            INTERFACE.blit(self.live[2],self.posLives[2])
+        if self.CapuchoMAN.health > 500 and self.CapuchoMAN.lives == 1:
+            INTERFACE.blit(self.live[0],self.posLives[0])
+            INTERFACE.blit(self.live[2],self.posLives[1])
+            INTERFACE.blit(self.live[2],self.posLives[2])
+        if self.CapuchoMAN.health <= 500 and self.CapuchoMAN.lives == 1:
+            INTERFACE.blit(self.live[1],self.posLives[0])
+            INTERFACE.blit(self.live[2],self.posLives[1])
+            INTERFACE.blit(self.live[2],self.posLives[2])
+        if self.CapuchoMAN.lives == 0:
+            INTERFACE.blit(self.live[2],self.posLives[0])
+            INTERFACE.blit(self.live[2],self.posLives[1])
+            INTERFACE.blit(self.live[2],self.posLives[2])
 
     def drawTime(self):
         self.seg = int(self.conFPS // FPS)

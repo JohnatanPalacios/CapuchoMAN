@@ -13,16 +13,16 @@ class CapuchoMAN(pg.sprite.Sprite):
         #super().__init__()
         pg.sprite.Sprite.__init__(self)
         self.input = Inputs(self)
-        self.vidas = 3
-        self.salud = 1000
-        self.puntos = 0
+        self.lives = 3
+        self.health = 1000
+        self.points = 0
         self.states = {"jump": False, "pause": False, "direction": 1}
 
         self.image = pg.surface.Surface([41,60])
         self.image.fill(VERDE)
         self.rect = self.image.get_rect()
-        self.rect.x = 180
-        self.rect.y = 180
+        self.rect.x = 0
+        self.rect.y = 0
 
         #self.animation = Animation(self,"./Graphics/saltando (64x47).png",
         #                                "./Graphics/CapMAN.png",[41,60], 6, 5, 28)
@@ -87,9 +87,6 @@ class CapuchoMAN(pg.sprite.Sprite):
         if self.vidas == 0:
             self.gameOver = True
 
-    def restarVida(self,cantidad):
-        jugador.vida -= cantidad
-
     def setTime(self,time):
         self.time = time
 
@@ -98,3 +95,11 @@ class CapuchoMAN(pg.sprite.Sprite):
         molotov = Molotov(self.rect.center,self.direccion)
         self.molotovs.add(molotov)
     '''
+
+    def getPos(self):
+        return [self.rect.x,self.rect.y]
+
+    def setLevelParameters(self,pos,walls):
+        self.rect.x = int(pos[0])
+        self.rect.y = int(pos[1])
+        self.walls = walls

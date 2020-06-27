@@ -2,9 +2,10 @@ import pygame as pg
 import sys
 import json
 
-from Classes.Walls import *
-from Classes.Platforms import *
-from Classes.Nails import *
+from Classes.Wall import *
+from Classes.Platform import *
+from Classes.Nail import *
+from Classes.Coin import *
 ###   HOW TO USE TILEDMAPS
 ###   ASEPRITE (es de pago pero se puede pirata)
 
@@ -21,7 +22,6 @@ class RoomLoader:
         self.walls = walls
         self.enemys = enemys
         self.coins = coins
-
 
     def update(self):
         if self.alarm:
@@ -66,35 +66,45 @@ class RoomLoader:
         Information.close()
 
         #Extraccion Objetos Json
-        _capuchoMAN = self.mapInfo['layers'][7]['objects']
-        _door = self.mapInfo['layers'][6]['objects']
-        _nails = self.mapInfo['layers'][5]['objects']
-        _platforms = self.mapInfo['layers'][4]['objects']
-        _walls = self.mapInfo['layers'][3]['objects']
-        _enemys = self.mapInfo['layers'][2]['objects']
         _coins = self.mapInfo['layers'][1]['objects']
+        _enemys = self.mapInfo['layers'][2]['objects']
+        _walls = self.mapInfo['layers'][3]['objects']
+        _platforms = self.mapInfo['layers'][4]['objects']
+        _nails = self.mapInfo['layers'][5]['objects']
+        _door = self.mapInfo['layers'][6]['objects']
+        _capuchoMAN = self.mapInfo['layers'][7]['objects']
 
+        #Creacion de las monedas
+        for i in range(len(_coins)):
+            temp = Coin((_coins[i]['x']),(_coins[i]['y']),_coins[i]['width'],_coins[i]['height'])
+            self.coins.add(temp)
+        '''
+        #Creacion de los enemigos
+        for i in range(len(_enemys)):
+            temp = Enemy((_enemys[i]['x']),(_enemys[i]['y']),_enemys[i]['width'],_enemys[i]['height'])
+            self.enemys.add(temp)
+        '''
         #Creacion de las paredes
         for i in range(len(_walls)):
-            temp = Walls((_walls[i]['x']),(_walls[i]['y']),_walls[i]['width'],_walls[i]['height'])
+            temp = Wall((_walls[i]['x']),(_walls[i]['y']),_walls[i]['width'],_walls[i]['height'])
             self.walls.add(temp)
             #temp = Block.Bloque([(walls[i]['x']),(walls[i]['y'])],walls[i]['width'],walls[i]['height'])
             #Blocks.add(temp)
 
         #Creacion de las plataformas
         for i in range(len(_platforms)):
-            temp = Platforms((_platforms[i]['x']),(_platforms[i]['y']),_platforms[i]['width'],_platforms[i]['height'])
+            temp = Platform((_platforms[i]['x']),(_platforms[i]['y']),_platforms[i]['width'],_platforms[i]['height'])
             self.walls.add(temp)
 
         #Creacion de las pinchos
         for i in range(len(_nails)):
-            temp = Nails((_nails[i]['x']),(_nails[i]['y']),_nails[i]['width'],_nails[i]['height'])
+            temp = Nail((_nails[i]['x']),(_nails[i]['y']),_nails[i]['width'],_nails[i]['height'])
             self.nails.add(temp)
-
-        ############## ZONA DE ACTUALIZACION DEL JUGADOR CON RELACION AL MAPA ACTUAL
-        ############## PREFERIBLEMENTE CREAR METODO EN EL JUGADOR PARA HACER ESTO
-        #### posicion inicial del jugador para este mapa
-        #self.capuchoMan.rect.x = int(_capuchoMAN[0]['x'])
-        #self.capuchoMan.rect.y = int(_capuchoMAN[0]['y'])
-        #carga en capuchoMan las paredes para verificar por donde caminar
-        self.capuchoMan.walls = self.walls
+        '''
+        #Creacion de las puertas
+        for i in range(len(_door)):
+            temp = Door((_door[i]['x']),(_door[i]['y']),_door[i]['width'],_door[i]['height'])
+            self.door.add(temp)
+        '''
+        #establece los parametros iniciales de posicion y muros del mapa
+        self.capuchoMan.setLevelParameters([_capuchoMAN[0]['x'],_capuchoMAN[0]['y']],self.walls)
