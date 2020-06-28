@@ -18,15 +18,13 @@ class Animation:
         self.object.rect = self.object.image.get_rect()
 
     def update(self):
-        if self.object.states["jump"]:
+        if self.object.states["jump"] or self.object.states["inAir"]:
             self.object.image = self.jump
             self.object.mask = pg.mask.from_surface(self.object.image)
-            self.object.rect = self.object.image.get_rect()
         else:
             self.animate()
             self.object.image = self.animations[self.aux()][self.frame]
             self.object.mask = pg.mask.from_surface(self.object.image)
-            self.object.rect = self.object.image.get_rect()
 
     def build(self,address,size,columns,rows,num):
         sabana = pg.image.load(address).convert_alpha()
@@ -66,8 +64,8 @@ class Animation:
                             image = pg.transform.flip(image, True, False)
                             left.append(image)
                         i += 1
-        animation.append(right)
         animation.append(left)
+        animation.append(right)
         return animation
 
     def animate(self):
@@ -83,7 +81,7 @@ class Animation:
                 self.frame = (self.numberFrames - 1)
 
     def aux(self):
-        if self.object.states["direction"] == 1:
+        if self.object.states["direction"] == -1:
             return 0
         else:
             return 1
