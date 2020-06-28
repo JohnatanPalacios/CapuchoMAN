@@ -16,7 +16,6 @@ class CollisionController:
 
     def checkCoins(self):
         collisionList = pg.sprite.spritecollide(self.capuchoMan,self.coins,False)#,pg.sprite.collide_mask)
-        print("PUNTOS!!!! ", len(collisionList))
         if collisionList:
             for coin in collisionList:
                 self.capuchoMan.points += coin.points
@@ -24,7 +23,7 @@ class CollisionController:
 
     def checkNails(self):
         collisionList = pg.sprite.spritecollide(self.capuchoMan,self.nails,False)#,pg.sprite.collide_mask)
-        print("DAÑO! REDUCCION DE SALUD ", len(collisionList))
+        #print("DAÑO! REDUCCION DE SALUD ", len(collisionList))
         if collisionList:
             for nail in collisionList:
                 self.capuchoMan.health -= nail.damage

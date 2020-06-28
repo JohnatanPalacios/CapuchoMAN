@@ -1,24 +1,19 @@
 import pygame as pg
 import sys
 
-from Classes.Camera import *
 from Constants import *
+from Classes.Camera import *
 from Controllers.RoomLoader import *
 from Controllers.CollisionController import *
-
 from Classes.CapuchoMAN import *
 from Classes.GUI import *
-
-#######################################
-# OJO SI NO SE HACEN LAS COLISIONES CON ESTO NO FUNCIONA LA MASCARA
-# collide_mask (sprite1, sprite2) -> (int, int)
-#########################################################
 
 class GameController:
     def __init__(self,soundPlayer):
         self.clock = pg.time.Clock()
         self.capuchoMan = CapuchoMAN()
         self.gui = GUI(self.capuchoMan)
+        self.camera = Camera(self.capuchoMan)
         self.soundPlayer = soundPlayer
         self.gameOver = False
 
@@ -41,16 +36,20 @@ class GameController:
             self.collisions.update()
             #self.checkGameOver()
             self.checkSound()
+            self.updateGroups()
+            self.camera.update()
             self.drawGame()
             self.gui.update()
             self.clock.tick(FPS)
 
     def drawGame(self):
         INTERFACE.fill(NEGRO)
-        INTERFACE.blit(self.level.background,[0,0])
+        INTERFACE.fill(VERDE) #para pruebas de camara
+        #INTERFACE.blit(self.level.background,self.camera.getCameraSpeed()) #[0,0]) # AQUÍ SE DEBE ACTUALIZAR CON LA POSICION DE LA CAMARA
         INTERFACE.blit(self.capuchoMan.image,self.capuchoMan.getPos())
         #self.enemy.draw(INTERFACE)
-        #self.coins.draw(INTERFACE)
+        self.walls.draw(INTERFACE)
+        self.coins.draw(INTERFACE)
         pg.display.flip()
 
     def checkSound(self):
@@ -58,3 +57,12 @@ class GameController:
             self.soundPlayer.set_locationGame("playing",True)
         else:
             self.soundPlayer.set_locationGame("playing",False)
+
+    def updateGroups(self):
+        for c in self.coins:
+            c.setVel(self.camera.getCameraSpeed())
+            c.update()
+
+        for w in self.walls:
+            w.setVel(self.camera.getCameraSpeed())
+            w.update()

@@ -11,11 +11,11 @@ class BaseBlock(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.vel = Vec2D()
-    '''
+
     def update(self):
-        self.vel.y = globales.vely_entorno
-        self.vel.x = globales.velx_entorno
-        self.rect.x += self.velx
-        self.rect.y += self.vely
-        self.mask = pg.mask.from_surface(self.image)
-    '''
+        self.rect.x += self.vel.x
+        self.rect.y += self.vel.y
+
+    def setVel(self,vel):
+        self.vel.x = vel[0]
+        self.vel.y = vel[1]

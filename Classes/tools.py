@@ -2,7 +2,7 @@ import pygame as pg
 import sys
 
 
-def createSprite(dir_archive, size, columms):
+def createAnimation(dir_archive, size, columms):
     archive = pg.image.load(dir_archive).convert_alpha()
     animation = []
     for c in range(columms):

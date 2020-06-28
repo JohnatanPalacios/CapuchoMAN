@@ -8,8 +8,8 @@ from Classes.tools import *
 class GUI():
     def __init__(self,CapuchoMAN):
         self.textBar = pg.image.load("./Graphics/gui/bar.png").convert_alpha()
-        self.numeros = createSprite("./Graphics/gui/numeros.png",[14,19],10)
-        self.live = createSprite("./Graphics/gui/vida.png",[33,28],3)
+        self.numeros = createAnimation("./Graphics/gui/numeros.png",[14,19],10)
+        self.live = createAnimation("./Graphics/gui/vida.png",[33,28],3)
         self.posLives = [[644,2],[681,2],[718,2]]
         self.CapuchoMAN = CapuchoMAN
         self.conFPS = 0

@@ -118,7 +118,7 @@ class Menu:
     def checkInput(self):
         for evento in pg.event.get():
             if evento.type == pg.QUIT:
-                self.exit()
+                self._exit()
             self.posMouse = pg.mouse.get_pos()
             self.click = pg.mouse.get_pressed()
 
