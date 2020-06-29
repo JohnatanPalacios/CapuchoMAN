@@ -8,26 +8,23 @@ class Camera:
     def __init__(self,capuchoMan):
         self.vel = Vec2D()
         self.capuchoMan = capuchoMan
-        self.right = WIDTH
-        self.left = 0
+        self.seed = int(WIDTH/4)
+        self.right = self.seed * 3
+        self.left = self.seed
         self.size = 7680
-        self.stop = False
+        self.pos = Vec2D()
 
     def update(self):
-        if (self.capuchoMan.rect.left - 64) <= 0 or (self.capuchoMan.rect.right + 64) >= self.size:
-            self.stop = True
+        if (self.capuchoMan.rect.left > self.left) and (self.capuchoMan.rect.right < self.right):
             self.vel.x = 0
+        elif (self.capuchoMan.rect.left <= self.left) and (self.left - self.seed >= 0) and (self.capuchoMan.vel.x < 0):
+            self.vel.x = (self.capuchoMan.vel.x * -1)
+            self.capuchoMan.rect.left = self.left
+        elif (self.capuchoMan.rect.right >= self.right) and (self.right + self.seed <= self.size) and (self.capuchoMan.vel.x > 0):
+            self.vel.x = (self.capuchoMan.vel.x * -1)
+            self.capuchoMan.rect.right = self.right
         else:
-            self.stop = False
-
-        if not self.stop and ((self.left + 320) >= self.capuchoMan.rect.left) and (self.capuchoMan.rect.right <= (self.right - 960)):
             self.vel.x = 0
-            print("en espacio libre...")
-        else:
-            self.vel.x += (self.capuchoMan.vel.x * -1)
-            self.left += (self.vel.x * -1)
-            self.right += (self.vel.x * -1)
-            print("movimiento de CAMARA")
 
-    def getCameraSpeed(self):
-        return [self.vel.x,self.vel.y]
+        self.pos.x += self.vel.x
+        self.pos.y += self.vel.y

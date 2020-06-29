@@ -10,13 +10,14 @@ from Classes.Coin import *
 ###   ASEPRITE (es de pago pero se puede pirata)
 
 class RoomLoader:
-    def __init__(self,capuchoMan,door,nails,walls,enemys,coins):
+    def __init__(self,capuchoMan,door,nails,walls,enemys,coins,camera):
         self.mapInfo = None
         self.countUP = 0
         self.alarm = True
         self.end = False
         self.background = None
         self.capuchoMan = capuchoMan
+        self.camera = camera
         self.door = door
         self.nails = nails
         self.walls = walls
@@ -76,34 +77,34 @@ class RoomLoader:
 
         #Creacion de las monedas
         for i in range(len(_coins)):
-            temp = Coin((_coins[i]['x']),(_coins[i]['y']),_coins[i]['width'],_coins[i]['height'])
+            temp = Coin((_coins[i]['x']),(_coins[i]['y']),_coins[i]['width'],_coins[i]['height'],self.camera)
             self.coins.add(temp)
         '''
         #Creacion de los enemigos
         for i in range(len(_enemys)):
-            temp = Enemy((_enemys[i]['x']),(_enemys[i]['y']),_enemys[i]['width'],_enemys[i]['height'])
+            temp = Enemy((_enemys[i]['x']),(_enemys[i]['y']),_enemys[i]['width'],_enemys[i]['height'],self.camera)
             self.enemys.add(temp)
         '''
         #Creacion de las paredes
         for i in range(len(_walls)):
-            temp = Wall((_walls[i]['x']),(_walls[i]['y']),_walls[i]['width'],_walls[i]['height'])
+            temp = Wall((_walls[i]['x']),(_walls[i]['y']),_walls[i]['width'],_walls[i]['height'],self.camera)
             self.walls.add(temp)
             #temp = Block.Bloque([(walls[i]['x']),(walls[i]['y'])],walls[i]['width'],walls[i]['height'])
             #Blocks.add(temp)
 
         #Creacion de las plataformas
         for i in range(len(_platforms)):
-            temp = Platform((_platforms[i]['x']),(_platforms[i]['y']),_platforms[i]['width'],_platforms[i]['height'])
+            temp = Platform((_platforms[i]['x']),(_platforms[i]['y']),_platforms[i]['width'],_platforms[i]['height'],self.camera)
             self.walls.add(temp)
 
         #Creacion de las pinchos
         for i in range(len(_nails)):
-            temp = Nail((_nails[i]['x']),(_nails[i]['y']),_nails[i]['width'],_nails[i]['height'])
+            temp = Nail((_nails[i]['x']),(_nails[i]['y']),_nails[i]['width'],_nails[i]['height'],self.camera)
             self.nails.add(temp)
         '''
         #Creacion de las puertas
         for i in range(len(_door)):
-            temp = Door((_door[i]['x']),(_door[i]['y']),_door[i]['width'],_door[i]['height'])
+            temp = Door((_door[i]['x']),(_door[i]['y']),_door[i]['width'],_door[i]['height'],self.camera)
             self.door.add(temp)
         '''
         #establece los parametros iniciales de posicion y muros del mapa

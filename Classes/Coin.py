@@ -5,8 +5,8 @@ from Entities.BaseBlock import *
 from Classes.tools import *
 
 class Coin(BaseBlock):
-    def __init__(self,x,y,width,height):
-        super().__init__(x,y,width,height)
+    def __init__(self,x,y,width,height,camera):
+        super().__init__(x,y,width,height,camera)
         self.points = 90
         self.frame = 0
         self.animation = createAnimation("./Graphics/coins/GoldenCoins.png",[32,32],7)

@@ -26,7 +26,7 @@ class GameController:
         self.molotovs =  pg.sprite.Group()
         self.capuchoMan.molotovs = self.molotovs
 
-        self.level = RoomLoader(self.capuchoMan,self.door,self.nails,self.walls,self.enemys,self.coins)
+        self.level = RoomLoader(self.capuchoMan,self.door,self.nails,self.walls,self.enemys,self.coins,self.camera)
         self.collisions = CollisionController(self.capuchoMan,self.door,self.nails,self.enemys,self.coins,self.molotovs)
 
     def main(self):
@@ -44,11 +44,11 @@ class GameController:
 
     def drawGame(self):
         INTERFACE.fill(NEGRO)
-        INTERFACE.fill(VERDE) #para pruebas de camara
-        #INTERFACE.blit(self.level.background,self.camera.getCameraSpeed()) #[0,0]) # AQUÍ SE DEBE ACTUALIZAR CON LA POSICION DE LA CAMARA
+        #INTERFACE.fill(VERDE) #para pruebas de camara
+        INTERFACE.blit(self.level.background,[self.camera.pos.x,self.camera.pos.y])
         INTERFACE.blit(self.capuchoMan.image,self.capuchoMan.getPos())
         #self.enemy.draw(INTERFACE)
-        self.walls.draw(INTERFACE)
+        #self.walls.draw(INTERFACE) #para pruebas
         self.coins.draw(INTERFACE)
         pg.display.flip()
 
@@ -60,9 +60,7 @@ class GameController:
 
     def updateGroups(self):
         for c in self.coins:
-            c.setVel(self.camera.getCameraSpeed())
             c.update()
 
         for w in self.walls:
-            w.setVel(self.camera.getCameraSpeed())
             w.update()

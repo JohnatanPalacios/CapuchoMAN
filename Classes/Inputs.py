@@ -43,7 +43,7 @@ class Inputs:
     def jumping(self):
         if not self.capuchoMan.states["jump"]:
             self.capuchoMan.states["jump"] = True
-            self.capuchoMan.vel.y = -36
+            self.capuchoMan.vel.y = -40
 
     def _exit(self):
         pg.quit()
