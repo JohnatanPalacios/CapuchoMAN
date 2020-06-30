@@ -4,6 +4,7 @@ import sys
 from Classes.Maths import *
 from Classes.Inputs import *
 from Classes.Animation import *
+from Constants import *
 
 class CapuchoMAN(pg.sprite.Sprite):
     def __init__(self):
@@ -12,7 +13,7 @@ class CapuchoMAN(pg.sprite.Sprite):
         self.lives = 3
         self.health = 1000
         self.points = 0
-        self.states = {"jump": False, "inAir": False, "pause": False, "direction": 1}
+        self.states = {"jump": False, "inAir": False, "pause": False, "direction": 1, "openDoor": False}
         self.animation = Animation(self,"./Graphics/saltando (64x47).png",
                                         "./Graphics/CapMAN.png",[41,60], 6, 5, 28)
         self.vel = Vec2D()
@@ -26,6 +27,7 @@ class CapuchoMAN(pg.sprite.Sprite):
         self.gravity()
         self.move()
         self.animation.update()
+        self.checkHealt()
 
     def move(self):
         self.rect.x = int(self.rect.x + self.vel.x)
@@ -49,27 +51,27 @@ class CapuchoMAN(pg.sprite.Sprite):
         collisionList = pg.sprite.spritecollide(self,self.walls,False)#,pg.sprite.collide_mask)
         if collisionList:
             for b in collisionList:
-                if self.rect.bottom >= b.rect.top:#((self.rect.bottom >= b.rect.top) and (self.rect.bottom <= b.rect.bottom)):
+                if ((self.rect.bottom >= b.rect.top) and (self.rect.bottom <= b.rect.bottom)):
                     self.vel.y = 0
                     self.states["jump"] = False
                     self.states["inAir"] = False
                     self.rect.bottom = b.rect.top
-                elif self.rect.top <= b.rect.bottom:#((self.rect.top <= b.rect.bottom) and (self.rect.top >= b.rect.top)):
+                elif ((self.rect.top <= b.rect.bottom) and (self.rect.top >= b.rect.top)):
                     self.vel.y = 0
                     self.rect.top = b.rect.bottom
                     self.vel.y += self.gravedad
         else:
             self.states["inAir"] = True
 
-    def checkEstado(self):
-        if (self.rect.bottom > ALTO + 100) or (self.time == '0:00'):
-            self.vidas -= 1
-        elif self.salud <= 0:
-            self.vidas -= 1
-            self.salud = 1000
+    def checkHealt(self):
+        if (self.rect.bottom > HEIGTH + 100) or (self.time == '0:00'):
+            self.lives -= 1
+        elif self.health <= 0:
+            self.lives -= 1
+            self.health = 1000
 
     def checkGameOver(self):
-        if self.vidas == 0:
+        if self.lives == 0:
             self.gameOver = True
 
     def setTime(self,time):

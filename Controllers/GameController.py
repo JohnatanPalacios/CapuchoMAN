@@ -27,10 +27,11 @@ class GameController:
         self.capuchoMan.molotovs = self.molotovs
 
         self.level = RoomLoader(self.capuchoMan,self.door,self.nails,self.walls,self.enemys,self.coins,self.camera)
-        self.collisions = CollisionController(self.capuchoMan,self.door,self.nails,self.enemys,self.coins,self.molotovs)
+        self.collisions = CollisionController(self.capuchoMan,self.door,self.nails,self.enemys,self.coins,self.molotovs,self.soundPlayer)
 
     def main(self):
         while not self.gameOver:
+            self.level.nextLevel(self.collisions.openDoor)
             self.level.update()
             self.capuchoMan.update()
             self.collisions.update()
@@ -44,11 +45,9 @@ class GameController:
 
     def drawGame(self):
         INTERFACE.fill(NEGRO)
-        #INTERFACE.fill(VERDE) #para pruebas de camara
         INTERFACE.blit(self.level.background,[self.camera.pos.x,self.camera.pos.y])
         INTERFACE.blit(self.capuchoMan.image,self.capuchoMan.getPos())
         #self.enemy.draw(INTERFACE)
-        #self.walls.draw(INTERFACE) #para pruebas
         self.coins.draw(INTERFACE)
         pg.display.flip()
 
@@ -64,3 +63,6 @@ class GameController:
 
         for w in self.walls:
             w.update()
+
+        for n in self.nails:
+            n.update()

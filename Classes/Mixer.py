@@ -1,8 +1,6 @@
 import pygame as pg
 import sys
 
-pg.mixer.init()
-
 class Mixer:
     def __init__(self):
         self.locationGame = {"menu": False, "history": False, "playing": False}
@@ -12,7 +10,7 @@ class Mixer:
         self.musicMenu = pg.mixer.Sound("./Sounds/menu.ogg")
         self.musicHistoria = pg.mixer.Sound("./Sounds/historia.ogg")
         self.sonidoClick = pg.mixer.Sound('./Sounds/Click.ogg')
-        self.grunt = pg.mixer.Sound('./Sounds/grunt.ogg')
+        self._grunt = pg.mixer.Sound('./Sounds/grunt.ogg')
         self.flagMenu = True
         self.flagMudo = False
         self.flagHistoria = True
@@ -65,7 +63,7 @@ class Mixer:
         self.sonidoClick.play()
 
     def grunt(self):
-        self.grunt.play()
+        self._grunt.play()
 
     def nextSong(self):
         if self.conPlayList < len(self.playList):

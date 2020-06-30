@@ -1,0 +1,24 @@
+
+#Lectura de archivo json
+FileName= 'Assets\Levels\Level1\Level1a.json'
+with open(FileName) as Information:
+    MapInfo=json.load(Information)
+Information.close()
+Juan David Osorio Ortiz12:18
+#Extraccion Objetos Json
+CollisionsA = MapInfo['layers'][13]['objects']
+PlatformsA = MapInfo['layers'][14]['objects']
+DiamondsPosA = MapInfo['layers'][10]['objects']
+ApplesPosA = MapInfo['layers'][11]['objects']
+CoinsPosA = MapInfo['layers'][12]['objects']
+DoorA = MapInfo['layers'][15]['objects']
+Enemys1A = MapInfo['layers'][16]['objects']
+Juan David Osorio Ortiz12:28
+#Creacion de las paredes
+    for i in range(len(Constants.CollisionsA)):
+        Temporal = Block.Bloque([(Constants.CollisionsA[i]['x']),(Constants.CollisionsA[i]['y'])],Constants.CollisionsA[i]['width'],Constants.CollisionsA[i]['height'])
+        Blocks.add(Temporal)
+Juan David Osorio Ortiz13:00
+HOW TO USE TILEDMAPS
+Juan David Osorio Ortiz13:04
+ASEPRITE

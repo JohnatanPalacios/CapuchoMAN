@@ -6,8 +6,9 @@ from Classes.Wall import *
 from Classes.Platform import *
 from Classes.Nail import *
 from Classes.Coin import *
+from Classes.Door import *
 ###   HOW TO USE TILEDMAPS
-###   ASEPRITE (es de pago pero se puede pirata)
+###   ASEPRITE para crear sprites
 
 class RoomLoader:
     def __init__(self,capuchoMan,door,nails,walls,enemys,coins,camera):
@@ -49,13 +50,11 @@ class RoomLoader:
             self.alarm = False
             self.countUP += 1
 
-    def nextLevel(self):
-        self.alarm = True
+    def nextLevel(self,openDoor):
+        if openDoor:
+            self.alarm = True
 
     def mapA1(self):
-        ##############################
-        #### verificar la forma de mover el mapaA1fondo
-        ##############################
         self.background = pg.image.load("./Maps/mapaA1fondo.png")
         #mapInfo = None
 
@@ -101,11 +100,11 @@ class RoomLoader:
         for i in range(len(_nails)):
             temp = Nail((_nails[i]['x']),(_nails[i]['y']),_nails[i]['width'],_nails[i]['height'],self.camera)
             self.nails.add(temp)
-        '''
+
         #Creacion de las puertas
         for i in range(len(_door)):
             temp = Door((_door[i]['x']),(_door[i]['y']),_door[i]['width'],_door[i]['height'],self.camera)
             self.door.add(temp)
-        '''
+
         #establece los parametros iniciales de posicion y muros del mapa
         self.capuchoMan.setLevelParameters([_capuchoMAN[0]['x'],_capuchoMAN[0]['y']],self.walls)

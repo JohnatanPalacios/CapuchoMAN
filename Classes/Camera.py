@@ -26,5 +26,8 @@ class Camera:
         else:
             self.vel.x = 0
 
+        self.move()
+
+    def move(self):
         self.pos.x += self.vel.x
         self.pos.y += self.vel.y

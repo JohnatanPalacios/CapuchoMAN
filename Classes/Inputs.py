@@ -40,9 +40,13 @@ class Inputs:
             #self.disparar()
             pass
 
+        if keys[K_s]:
+            self.capuchoMan.states["openDoor"] = True
+
     def jumping(self):
-        if not self.capuchoMan.states["jump"]:
+        if not self.capuchoMan.states["jump"] and not self.capuchoMan.states["inAir"]:
             self.capuchoMan.states["jump"] = True
+            self.capuchoMan.states["inAir"] = True
             self.capuchoMan.vel.y = -40
 
     def _exit(self):

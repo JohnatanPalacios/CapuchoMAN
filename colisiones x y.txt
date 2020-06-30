@@ -1,0 +1,15 @@
+for b in listaColision:
+            if ((self.rect.right >= b.rect.left) and (self.rect.right <= b.rect.right)):
+                self.rect.right = b.rect.left
+            elif ((self.rect.left <= b.rect.right) and (self.rect.left >= b.rect.left)):
+                self.rect.left = b.rect.right
+Jhonatan Ospina Osorio19:21
+for b in listaColision:
+            if ((self.rect.bottom >= b.rect.top) and (self.rect.bottom <= b.rect.bottom)):
+                self.vely = 0
+                self.EnAire = False
+                self.rect.bottom = b.rect.top
+            elif ((self.rect.top <= b.rect.bottom) and (self.rect.top >= b.rect.top)):
+                self.vely = 0
+                self.rect.top = b.rect.bottom
+                self.vely += 0.5

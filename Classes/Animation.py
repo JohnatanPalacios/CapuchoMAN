@@ -14,17 +14,14 @@ class Animation:
         self.numberFrames = len(self.animations[0])
 
         self.object.image = self.animations[0][0]
-        self.object.mask = pg.mask.from_surface(self.object.image)
         self.object.rect = self.object.image.get_rect()
 
     def update(self):
         if self.object.states["jump"] or self.object.states["inAir"]:
             self.object.image = self.jump
-            self.object.mask = pg.mask.from_surface(self.object.image)
         else:
             self.animate()
             self.object.image = self.animations[self.aux()][self.frame]
-            self.object.mask = pg.mask.from_surface(self.object.image)
 
     def build(self,address,size,columns,rows,num):
         sabana = pg.image.load(address).convert_alpha()
