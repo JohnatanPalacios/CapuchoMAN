@@ -14,7 +14,7 @@ class GUI():
         self.CapuchoMAN = CapuchoMAN
         self.conFPS = 0
         self.seg = 0
-        self.min = 1
+        self.min = 0
         self.fuente = pg.font.SysFont('Arial Black',28)
         self.posTime = [1066,-6]
         self.time = None
@@ -25,6 +25,11 @@ class GUI():
         self.drawHealthLive()
         self.drawTime()
         pg.display.flip()
+
+    def set_time(self,time):
+        self.min = int(time)
+        self.seg = int((time-self.min)*10)
+        self.conFPS = 0
 
     def drawPoints(self):
         miles = self.CapuchoMAN.points/1000
@@ -86,4 +91,4 @@ class GUI():
             self.time = str(self.min) + ':' + '0' + str(59 - self.seg)
 
         INTERFACE.blit(self.fuente.render(self.time,True,NEGRO),self.posTime)
-        self.CapuchoMAN.setTime(self.time)
+        self.CapuchoMAN.time = self.time

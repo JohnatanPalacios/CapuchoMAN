@@ -17,6 +17,7 @@ class GameController:
         self.soundPlayer = soundPlayer
         self.gameOver = False
 
+        self.lava =  pg.sprite.Group()
         self.door =  pg.sprite.Group()
         self.nails =  pg.sprite.Group()
         self.walls =  pg.sprite.Group()
@@ -26,7 +27,7 @@ class GameController:
         self.molotovs =  pg.sprite.Group()
         self.capuchoMan.molotovs = self.molotovs
 
-        self.level = RoomLoader(self.capuchoMan,self.door,self.nails,self.walls,self.enemys,self.coins,self.camera)
+        self.level = RoomLoader(self.capuchoMan,self.door,self.nails,self.walls,self.enemys,self.coins,self.lava,self.camera,self.gui)
         self.collisions = CollisionController(self.capuchoMan,self.door,self.nails,self.enemys,self.coins,self.molotovs,self.soundPlayer)
 
     def main(self):
@@ -60,9 +61,9 @@ class GameController:
     def updateGroups(self):
         for c in self.coins:
             c.update()
-
         for w in self.walls:
             w.update()
-
         for n in self.nails:
             n.update()
+        for d in self.door:
+            d.update()

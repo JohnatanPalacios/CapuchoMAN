@@ -18,8 +18,8 @@ class CapuchoMAN(pg.sprite.Sprite):
                                         "./Graphics/CapMAN.png",[41,60], 6, 5, 28)
         self.vel = Vec2D()
         self.walls = None
-        self.molotovs = None
         self.time = None
+        self.molotovs = None
         self.gravedad = 3.5
 
     def update(self):
@@ -69,13 +69,6 @@ class CapuchoMAN(pg.sprite.Sprite):
         elif self.health <= 0:
             self.lives -= 1
             self.health = 1000
-
-    def checkGameOver(self):
-        if self.lives == 0:
-            self.gameOver = True
-
-    def setTime(self,time):
-        self.time = time
 
     '''
     def disparar(self):

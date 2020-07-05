@@ -173,7 +173,7 @@
   <object id="115" x="6980.32" y="623.227" width="54.75" height="17"/>
  </objectgroup>
  <objectgroup id="5" name="Door">
-  <object id="61" x="7556" y="575.688" width="55.6364" height="57.4034"/>
+  <object id="61" x="7556" y="574.438" width="55.6364" height="58.6534"/>
  </objectgroup>
  <objectgroup id="8" name="CapuchoMAN">
   <object id="95" x="127.75" y="63.75" width="63.75" height="64.25"/>
