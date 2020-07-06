@@ -8,10 +8,11 @@ class Camera:
     def __init__(self,capuchoMan):
         self.vel = Vec2D()
         self.capuchoMan = capuchoMan
-        self.seed = int(WIDTH/4)
-        self.right = self.seed * 3
-        self.left = self.seed
-        self.size = 7680
+        self.right = int(WIDTH/4) * 3
+        self.left = int(WIDTH/4)
+        self.top = int(HEIGTH/8) * 3
+        self.bottom = int(HEIGTH/8) * 5
+        self.size = None ### get_size() returns a tuple, but not necessary now
         self.pos = Vec2D()
         self.orientation = None
 
@@ -19,16 +20,27 @@ class Camera:
         if self.orientation == "horizontal":
             if (self.capuchoMan.rect.left > self.left) and (self.capuchoMan.rect.right < self.right):
                 self.vel.x = 0
-            elif (self.capuchoMan.rect.left <= self.left) and (self.left - self.seed >= 0) and (self.capuchoMan.vel.x < 0):
+            elif (self.capuchoMan.rect.left <= self.left) and (self.pos.x * -1 > 0):
                 self.vel.x = (self.capuchoMan.vel.x * -1)
                 self.capuchoMan.rect.left = self.left
-            elif (self.capuchoMan.rect.right >= self.right) and (self.right + self.seed <= self.size) and (self.capuchoMan.vel.x > 0):
+            elif (self.capuchoMan.rect.right >= self.right) and ((self.pos.x * -1) + WIDTH +10 < self.size):
                 self.vel.x = (self.capuchoMan.vel.x * -1)
                 self.capuchoMan.rect.right = self.right
             else:
                 self.vel.x = 0
         elif self.orientation == "vertical":
-            pass
+            #if (self.capuchoMan.rect.top > self.top) and (self.capuchoMan.rect.bottom < self.bottom):
+            #    self.vel.y = 0
+            if (self.capuchoMan.rect.top <= self.top) and (self.pos.y * -1 > 0):
+                self.vel.y = int(self.capuchoMan.vel.y * -1)
+                self.capuchoMan.rect.top = self.top
+            elif (self.capuchoMan.rect.bottom >= self.bottom) and ((self.pos.y * -1) + HEIGTH +12 < self.size):
+                self.vel.y = int(self.capuchoMan.vel.y * -1)
+                self.capuchoMan.rect.bottom = self.bottom
+            else:
+                self.vel.y = 0
+            #print(self.pos)
+            print(self.capuchoMan.vel)
 
         self.move()
 

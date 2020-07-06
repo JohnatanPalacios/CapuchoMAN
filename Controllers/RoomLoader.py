@@ -70,8 +70,9 @@ class RoomLoader:
             self.lava.remove(l)
 
     def mapA1(self):
-        self.camera.orientation = "horizontal"
         self.background = pg.image.load("./Maps/mapaA1fondo.png")
+        self.camera.orientation = "horizontal"
+        self.camera.size = self.background.get_width()
 
         #Lectura de archivo json
         FileName = 'Maps\mapaA1.json'
@@ -127,9 +128,10 @@ class RoomLoader:
         self.gui.set_time(1.5)
 
     def mapA2(self):
+        self.background = pg.image.load("./Maps/mapaA2fondo.png")
         self.camera.restart()
         self.camera.orientation = "vertical"
-        self.background = pg.image.load("./Maps/mapaA2fondo.png")
+        self.camera.size = self.background.get_height()
 
         #Lectura de archivo json
         FileName = 'Maps\mapaA2.json'
@@ -181,6 +183,7 @@ class RoomLoader:
         for i in range(len(_lava)):
             temp = Lava((_lava[i]['x']),(_lava[i]['y']),_lava[i]['width'],_lava[i]['height'],self.camera)
             self.lava.add(temp)
+            self.walls.add(temp)
 
         #establece los parametros iniciales de posicion y muros del mapa
         self.capuchoMan.setLevelParameters([_capuchoMAN[0]['x'],_capuchoMAN[0]['y']],self.walls)
