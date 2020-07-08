@@ -38,13 +38,13 @@ class GUI():
         unidad = decena % 10
 
         if int(miles) != 0:
-            INTERFACE.blit(self.numeros[int(miles)],[183,5])
+            INTERFACE.blit(self.numeros[int(miles)],[193,5])
         if int(centena) != 0 or miles > 0:
-            INTERFACE.blit(self.numeros[int(centena)],[200,5])
+            INTERFACE.blit(self.numeros[int(centena)],[210,5])
         if int(decena) != 0 or centena > 0 or miles > 0:
-            INTERFACE.blit(self.numeros[int(decena)],[217,5])
+            INTERFACE.blit(self.numeros[int(decena)],[227,5])
 
-        INTERFACE.blit(self.numeros[int(unidad)],[234,5])
+        INTERFACE.blit(self.numeros[int(unidad)],[244,5])
 
     def drawHealthLive(self):
         if self.CapuchoMAN.health > 500 and self.CapuchoMAN.lives == 3:

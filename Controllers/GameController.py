@@ -38,6 +38,7 @@ class GameController:
             self.collisions.update()
             #self.checkGameOver()
             self.checkSound()
+            #self.soundPlayer.update()
             self.updateGroups()
             self.camera.update()
             self.drawGame()
@@ -46,9 +47,10 @@ class GameController:
 
     def drawGame(self):
         INTERFACE.fill(NEGRO)
-        INTERFACE.blit(self.level.background,[self.camera.pos.x,self.camera.pos.y])
+        INTERFACE.blit(self.level.background,self.camera.getPos())
         INTERFACE.blit(self.capuchoMan.image,self.capuchoMan.getPos())
         #self.enemy.draw(INTERFACE)
+        self.walls.draw(INTERFACE)
         self.coins.draw(INTERFACE)
         pg.display.flip()
 

@@ -31,7 +31,8 @@ class RoomLoader:
     def update(self):
         if self.alarm:
             if self.countUP == 0:
-                self.mapA1()
+                #self.mapA1()
+                self.mapA2()
             elif self.countUP == 1:
                 self.clearLevel()
                 self.mapA2()
@@ -71,8 +72,7 @@ class RoomLoader:
 
     def mapA1(self):
         self.background = pg.image.load("./Maps/mapaA1fondo.png")
-        self.camera.orientation = "horizontal"
-        self.camera.size = self.background.get_width()
+        self.camera.setup("horizontal",self.background.get_width())
 
         #Lectura de archivo json
         FileName = 'Maps\mapaA1.json'
@@ -122,16 +122,14 @@ class RoomLoader:
             self.door.add(temp)
 
         #establece los parametros iniciales de posicion y muros del mapa
-        self.capuchoMan.setLevelParameters([_capuchoMAN[0]['x'],_capuchoMAN[0]['y']],self.walls)
+        self.capuchoMan.setup([_capuchoMAN[0]['x'],_capuchoMAN[0]['y']],self.walls,"horizontal")
 
         #establece el tiempo para jugar el mapa
-        self.gui.set_time(1.5)
+        self.gui.set_time(1)
 
     def mapA2(self):
         self.background = pg.image.load("./Maps/mapaA2fondo.png")
-        self.camera.restart()
-        self.camera.orientation = "vertical"
-        self.camera.size = self.background.get_height()
+        self.camera.setup("vertical",self.background.get_height())
 
         #Lectura de archivo json
         FileName = 'Maps\mapaA2.json'
@@ -186,7 +184,7 @@ class RoomLoader:
             self.walls.add(temp)
 
         #establece los parametros iniciales de posicion y muros del mapa
-        self.capuchoMan.setLevelParameters([_capuchoMAN[0]['x'],_capuchoMAN[0]['y']],self.walls)
+        self.capuchoMan.setup([_capuchoMAN[0]['x'],_capuchoMAN[0]['y']],self.walls,"vertical")
 
         #establece el tiempo para jugar el mapa
         self.gui.set_time(1.5)

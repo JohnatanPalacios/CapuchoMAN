@@ -21,6 +21,7 @@ class CapuchoMAN(pg.sprite.Sprite):
         self.time = None
         self.molotovs = None
         self.gravedad = 3.5
+        self.mapOrientation = None
 
     def update(self):
         self.input.checkInputs()
@@ -30,16 +31,24 @@ class CapuchoMAN(pg.sprite.Sprite):
         self.checkHealt()
 
     def move(self):
-        self.rect.x = int(self.rect.x + self.vel.x)
-        self.checkCollisionX()
-        self.rect.y = int(self.rect.y + self.vel.y)
-        self.checkCollisionY()
+        if self.mapOrientation == "horizontal":
+            self.rect.x = int(self.rect.x + self.vel.x)
+            self.checkCollisionX()
+            self.rect.y = int(self.rect.y + self.vel.y)
+            self.checkCollisionY()
+        elif self.mapOrientation == "vertical":
+            self.rect.y = int(self.rect.y + self.vel.y)
+            self.checkCollisionY()
+            self.rect.x = int(self.rect.x + self.vel.x)
+            self.checkCollisionX()
+
 
     def gravity(self):
         self.vel.y += self.gravedad
 
     def checkCollisionX(self):
         collisionList = pg.sprite.spritecollide(self,self.walls,False)#,pg.sprite.collide_mask)
+        print("colisiones en x: ",len(collisionList))
         if collisionList:
             for b in collisionList:
                 if ((self.rect.right >= b.rect.left) and (self.rect.right <= b.rect.right)):
@@ -49,6 +58,7 @@ class CapuchoMAN(pg.sprite.Sprite):
 
     def checkCollisionY(self):
         collisionList = pg.sprite.spritecollide(self,self.walls,False)#,pg.sprite.collide_mask)
+        print("colisiones en y: ",len(collisionList))
         if collisionList:
             for b in collisionList:
                 if ((self.rect.bottom >= b.rect.top) and (self.rect.bottom <= b.rect.bottom)):
@@ -79,7 +89,8 @@ class CapuchoMAN(pg.sprite.Sprite):
     def getPos(self):
         return [self.rect.x,self.rect.y]
 
-    def setLevelParameters(self,pos,walls):
+    def setup(self,pos,walls,mapOrientation): #cambiar por setup o setups igual en camara
         self.rect.x = int(pos[0])
         self.rect.y = int(pos[1])
         self.walls = walls
+        self.mapOrientation = "horizontal"

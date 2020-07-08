@@ -29,18 +29,19 @@ class Camera:
             else:
                 self.vel.x = 0
         elif self.orientation == "vertical":
-            #if (self.capuchoMan.rect.top > self.top) and (self.capuchoMan.rect.bottom < self.bottom):
-            #    self.vel.y = 0
-            if (self.capuchoMan.rect.top <= self.top) and (self.pos.y * -1 > 0):
-                self.vel.y = int(self.capuchoMan.vel.y * -1)
+            if (self.capuchoMan.rect.top > self.top) and (self.capuchoMan.rect.bottom < self.bottom):
+                self.vel.y = 0
+            elif (self.capuchoMan.rect.top <= self.top) and (self.pos.y * -1 > 0):
+                self.vel.y = (self.capuchoMan.vel.y * -1)
                 self.capuchoMan.rect.top = self.top
             elif (self.capuchoMan.rect.bottom >= self.bottom) and ((self.pos.y * -1) + HEIGTH +12 < self.size):
-                self.vel.y = int(self.capuchoMan.vel.y * -1)
+                self.vel.y = (self.capuchoMan.vel.y * -1)
                 self.capuchoMan.rect.bottom = self.bottom
             else:
                 self.vel.y = 0
             #print(self.pos)
-            print(self.capuchoMan.vel)
+            #print(self.capuchoMan.vel)
+            print(self.capuchoMan.getPos())
 
         self.move()
 
@@ -48,6 +49,11 @@ class Camera:
         self.pos.x += self.vel.x
         self.pos.y += self.vel.y
 
-    def restart(self):
+    def setup(self,orientation,size):
         self.pos.x = 0
         self.pos.y = 0
+        self.orientation = orientation
+        self.size = size
+
+    def getPos(self):
+        return [self.pos.x,self.pos.y]
