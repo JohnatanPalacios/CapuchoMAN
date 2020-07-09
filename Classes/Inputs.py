@@ -4,9 +4,6 @@ from pygame.locals import *
 import sys
 
 
-# tener en cuenta la velocidad maxima en x y
-# verificar esta maxima y limitarla
-
 class Inputs:
     def __init__(self,capuchoMan):
         self.capuchoMan = capuchoMan

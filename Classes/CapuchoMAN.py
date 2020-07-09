@@ -20,45 +20,68 @@ class CapuchoMAN(pg.sprite.Sprite):
         self.walls = None
         self.time = None
         self.molotovs = None
-        self.gravedad = 3.5
+        self.G = 3.5
         self.mapOrientation = None
 
     def update(self):
-        self.input.checkInputs()
-        self.gravity()
         self.move()
+        self.gravity()
         self.animation.update()
         self.checkHealt()
+        self.input.checkInputs()
 
     def move(self):
-        if self.mapOrientation == "horizontal":
-            self.rect.x = int(self.rect.x + self.vel.x)
-            self.checkCollisionX()
-            self.rect.y = int(self.rect.y + self.vel.y)
-            self.checkCollisionY()
-        elif self.mapOrientation == "vertical":
-            self.rect.y = int(self.rect.y + self.vel.y)
-            self.checkCollisionY()
-            self.rect.x = int(self.rect.x + self.vel.x)
-            self.checkCollisionX()
+        self.rect.y = int(self.rect.y + self.vel.y)
+        self.checkCollisionY()
+        self.rect.x = int(self.rect.x + self.vel.x)
+        self.checkCollisionX()
 
 
     def gravity(self):
-        self.vel.y += self.gravedad
+        self.vel.y += self.G
 
     def checkCollisionX(self):
-        collisionList = pg.sprite.spritecollide(self,self.walls,False)#,pg.sprite.collide_mask)
-        print("colisiones en x: ",len(collisionList))
+        '''
+        for wall in self.walls:
+            if self.rect.colliderect(wall.rect):
+                if self.vel.x > 0:
+                    self.rect.right = wall.rect.left
+                    self.vel.x = 0
+                if self.vel.x < 0:
+                    self.rect.left = wall.rect.right
+                    self.vel.x = 0
+        '''
+        collisionList = pg.sprite.spritecollide(self, self.walls, False)
+        #print("colisiones en x: ", len(collisionList))
         if collisionList:
             for b in collisionList:
                 if ((self.rect.right >= b.rect.left) and (self.rect.right <= b.rect.right)):
                     self.rect.right = b.rect.left
+                    self.vel.x = 0
                 elif ((self.rect.left <= b.rect.right) and (self.rect.left >= b.rect.left)):
                     self.rect.left = b.rect.right
+                    self.vel.x = 0
+
 
     def checkCollisionY(self):
-        collisionList = pg.sprite.spritecollide(self,self.walls,False)#,pg.sprite.collide_mask)
-        print("colisiones en y: ",len(collisionList))
+        inAir = True
+        for wall in self.walls:
+            if self.rect.colliderect(wall.rect):
+                if self.vel.y > 0:
+                    self.rect.bottom = wall.rect.top
+                    self.vel.y = 0
+                    self.states["jump"] = False
+                    self.states["inAir"] = False
+                    inAir = False
+                if self.vel.y < 0:
+                    self.rect.top = wall.rect.bottom
+                    self.vel.y = 0
+                    inAir = False
+        if inAir:
+            self.states["inAir"] = True
+        '''
+        collisionList = pg.sprite.spritecollide(self, self.walls, False)
+        print("colisiones en y: ", len(collisionList))
         if collisionList:
             for b in collisionList:
                 if ((self.rect.bottom >= b.rect.top) and (self.rect.bottom <= b.rect.bottom)):
@@ -69,9 +92,9 @@ class CapuchoMAN(pg.sprite.Sprite):
                 elif ((self.rect.top <= b.rect.bottom) and (self.rect.top >= b.rect.top)):
                     self.vel.y = 0
                     self.rect.top = b.rect.bottom
-                    self.vel.y += self.gravedad
         else:
             self.states["inAir"] = True
+        '''
 
     def checkHealt(self):
         if (self.rect.bottom > HEIGTH + 100) or (self.time == '0:00'):
@@ -87,10 +110,13 @@ class CapuchoMAN(pg.sprite.Sprite):
     '''
 
     def getPos(self):
-        return [self.rect.x,self.rect.y]
+        return [self.rect.x, self.rect.y]
 
-    def setup(self,pos,walls,mapOrientation): #cambiar por setup o setups igual en camara
+    def draw(self):
+        INTERFACE.blit(self.image, self.getPos())
+
+    def setup(self, pos, walls, mapOrientation):
         self.rect.x = int(pos[0])
         self.rect.y = int(pos[1])
         self.walls = walls
-        self.mapOrientation = "horizontal"
+        self.mapOrientation = mapOrientation

@@ -47,10 +47,10 @@ class GameController:
 
     def drawGame(self):
         INTERFACE.fill(NEGRO)
-        INTERFACE.blit(self.level.background,self.camera.getPos())
-        INTERFACE.blit(self.capuchoMan.image,self.capuchoMan.getPos())
+        self.level.draw()
+        self.capuchoMan.draw()
         #self.enemy.draw(INTERFACE)
-        self.walls.draw(INTERFACE)
+        #self.walls.draw(INTERFACE)
         self.coins.draw(INTERFACE)
         pg.display.flip()
 
@@ -69,3 +69,5 @@ class GameController:
             n.update()
         for d in self.door:
             d.update()
+        for l in self.lava:
+            l.update()

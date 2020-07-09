@@ -31,8 +31,7 @@ class RoomLoader:
     def update(self):
         if self.alarm:
             if self.countUP == 0:
-                #self.mapA1()
-                self.mapA2()
+                self.mapA1()
             elif self.countUP == 1:
                 self.clearLevel()
                 self.mapA2()
@@ -69,6 +68,9 @@ class RoomLoader:
             self.door.remove(d)
         for l in self.lava:
             self.lava.remove(l)
+
+    def draw(self):
+        INTERFACE.blit(self.background,self.camera.getPos())
 
     def mapA1(self):
         self.background = pg.image.load("./Maps/mapaA1fondo.png")
