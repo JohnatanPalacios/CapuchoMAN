@@ -37,7 +37,7 @@ class Inputs:
             #self.disparar()
             pass
 
-        if keys[K_s]:
+        if keys[K_RETURN]:
             self.capuchoMan.states["openDoor"] = True
 
     def jumping(self):

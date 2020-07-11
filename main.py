@@ -11,7 +11,7 @@ from Classes.GUI import *
 def main():
     pg.init()
     pg.mixer.init()
-    
+
     soundPlayer = Mixer()
 
     menu = Menu(soundPlayer)

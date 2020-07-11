@@ -36,8 +36,8 @@ class RoomLoader:
                 self.clearLevel()
                 self.mapA2()
             elif self.countUP == 2:
-                pass
-                #self.mapA3()
+                self.clearLevel()
+                self.mapA3()
             elif self.countUP == 3:
                 pass
                 #self.mapB1()

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.4" tiledversion="1.4.1" orientation="orthogonal" renderorder="right-down" width="100" height="11" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="65">
+ <editorsettings>
+  <export target="mapaA3.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="texturas.tsx"/>
+ <layer id="1" name="Background" width="100" height="11">
+  <data encoding="base64" compression="zstd">
+   KLUv/WAwEIUFAKQCIwAAACSgMgAGDQ0GBwAAAAgAAAAJAAAACgYGDQYnJwAnACcjASIBIgEjPqBQV9AH8AIaAW0bkLkYkbi8yuMJyvBsJ4zsujTyiamrSpf4GqMJ6PwgHE6i71DLmGolQf8v59hKRy25jtx0HmI6Djm/mZP8MNGbEvxzF8ZNcQeCAAaJU6XwyW0IRwdScIGoxjIpDY0sENXpc9/07FamQwZiEiWw1ae9cBBR7/AOXIU+
+  </data>
+ </layer>
+ <objectgroup id="5" name="Coins">
+  <object id="41" x="336.909" y="465.091" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="42" x="401.034" y="464.841" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="43" x="657.034" y="464.841" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="44" x="592.909" y="465.091" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="45" x="1233.28" y="464.966" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="46" x="1169.16" y="465.216" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="47" x="1617.28" y="464.591" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="48" x="1553.16" y="464.841" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="49" x="2128.99" y="208.966" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="50" x="2193.12" y="208.716" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="51" x="2768.95" y="465.216" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="52" x="2833.08" y="464.966" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="53" x="5457.01" y="209.049" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="54" x="5521.14" y="208.799" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="55" x="2896.83" y="464.966" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="56" x="3664.7" y="209.091" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="58" x="3792.58" y="208.841" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="59" x="4304.99" y="465.047" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="60" x="4369.12" y="464.797" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="61" x="4432.87" y="464.797" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="62" x="4881.06" y="465.062" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="63" x="4945.19" y="464.812" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+  <object id="64" x="5008.94" y="464.812" width="29.983" height="29.7216">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="Enemys"/>
+ <objectgroup id="3" name="Walls">
+  <object id="2" x="-65.6061" y="-93.3333" width="6564.94" height="157.303"/>
+  <object id="3" x="6335.99" y="64.0078" width="164.008" height="693.992"/>
+  <object id="4" x="-63" y="63.9844" width="127" height="696.516"/>
+  <object id="5" x="64.0111" y="639.944" width="6270.84" height="119.51"/>
+ </objectgroup>
+ <objectgroup id="7" name="Plataforms">
+  <object id="15" x="6281.75" y="127.75" width="50.25" height="63.75"/>
+  <object id="16" x="6151.58" y="256.333" width="50.25" height="63.75"/>
+  <object id="17" x="6023.96" y="384.208" width="50.25" height="63.75"/>
+  <object id="18" x="5895.58" y="512.061" width="50.25" height="63.75"/>
+  <object id="19" x="5191.83" y="511.977" width="50.25" height="63.75"/>
+  <object id="20" x="5387.5" y="384.144" width="241.25" height="55.0833"/>
+  <object id="21" x="4038.83" y="511.977" width="50.25" height="63.75"/>
+  <object id="22" x="3911.83" y="383.477" width="50.25" height="63.75"/>
+  <object id="23" x="3784.61" y="383.977" width="50.25" height="63.75"/>
+  <object id="24" x="3656.02" y="384.25" width="50.25" height="63.75"/>
+  <object id="25" x="3527.92" y="383.841" width="50.25" height="63.75"/>
+  <object id="26" x="3399.24" y="512.341" width="50.25" height="63.75"/>
+  <object id="27" x="2440.24" y="511.977" width="50.25" height="63.75"/>
+  <object id="28" x="2057.17" y="384.477" width="241.25" height="55.0833"/>
+  <object id="29" x="1863.24" y="512.227" width="50.25" height="63.75"/>
+  <object id="30" x="968.492" y="448.227" width="50.25" height="63.75"/>
+  <object id="31" x="776.242" y="447.977" width="50.25" height="63.75"/>
+ </objectgroup>
+ <objectgroup id="8" name="Nails">
+  <object id="32" x="258.818" y="623.545" width="55.9091" height="16.0909"/>
+  <object id="33" x="707.364" y="623.758" width="55.9091" height="16.0909"/>
+  <object id="34" x="1090.99" y="623.633" width="55.9091" height="16.0909"/>
+  <object id="35" x="1667.26" y="623.814" width="55.9091" height="16.0909"/>
+  <object id="36" x="2819.18" y="623.814" width="55.9091" height="16.0909"/>
+  <object id="37" x="3331.18" y="623.856" width="55.9091" height="16.0909"/>
+  <object id="38" x="4355.24" y="623.614" width="55.9091" height="16.0909"/>
+  <object id="39" x="4931.01" y="624.023" width="55.9091" height="16.0909"/>
+  <object id="40" x="5827.53" y="623.992" width="503.909" height="16.0909"/>
+ </objectgroup>
+ <objectgroup id="9" name="Door">
+  <object id="14" x="6273.75" y="-9.5" width="61" height="75.75"/>
+ </objectgroup>
+ <objectgroup id="4" name="Lava">
+  <object id="10" x="5184.03" y="640.015" width="640.026" height="108.667"/>
+  <object id="11" x="3392.24" y="640.03" width="703.71" height="108.667"/>
+  <object id="12" x="1856.05" y="640.018" width="639.921" height="108.667"/>
+  <object id="13" x="768.186" y="639.964" width="255.811" height="108.667"/>
+ </objectgroup>
+ <objectgroup id="2" name="CapuchoMAN">
+  <object id="1" x="68.5682" y="67.4205" width="58.0909" height="63.8182"/>
+ </objectgroup>
+</map>
