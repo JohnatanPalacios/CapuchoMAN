@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"mapaA3.json"
+        }
+    },
  "height":11,
  "infinite":false,
  "layers":[
@@ -375,7 +383,7 @@
          "name":"Plataforms",
          "objects":[
                 {
-                 "height":63.75,
+                 "height":61.75,
                  "id":15,
                  "name":"",
                  "rotation":0,
@@ -383,7 +391,7 @@
                  "visible":true,
                  "width":50.25,
                  "x":6281.75,
-                 "y":127.75
+                 "y":129.75
                 }, 
                 {
                  "height":63.75,

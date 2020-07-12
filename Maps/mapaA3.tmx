@@ -88,7 +88,7 @@
   <object id="5" x="64.0111" y="639.944" width="6270.84" height="119.51"/>
  </objectgroup>
  <objectgroup id="7" name="Plataforms">
-  <object id="15" x="6281.75" y="127.75" width="50.25" height="63.75"/>
+  <object id="15" x="6281.75" y="129.75" width="50.25" height="61.75"/>
   <object id="16" x="6151.58" y="256.333" width="50.25" height="63.75"/>
   <object id="17" x="6023.96" y="384.208" width="50.25" height="63.75"/>
   <object id="18" x="5895.58" y="512.061" width="50.25" height="63.75"/>
